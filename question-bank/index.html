@@ -707,7 +707,7 @@
             }
 
             async loadQuestionsFromDB(provider) {
-                const API = window.CERTLINGO_API_URL || 'http://localhost:8000';
+                const API = 'https://certlingo.onrender.com';
                 const res  = await fetch(`${API}/api/questions?limit=200`);
                 if (!res.ok) throw new Error(`API error ${res.status}`);
                 const data = await res.json();
