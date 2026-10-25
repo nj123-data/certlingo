@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CertLingo - Master IT & Cloud Certifications in 50 Questions</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Plus Jakarta Sans & JetBrains Mono Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            surface: {
+              50: '#1a2336',
+              100: '#141c2e',
+              200: '#0f1624',
+              300: '#0b0f19', // Deep dark slate background
+              border: '#222f43',
+              borderHover: '#3b4f73',
+            },
+            accent: {
+              amber: '#f59e0b',
+              amberHover: '#d97706',
+              sky: '#0284c7',
+              emerald: '#10b981',
+              rose: '#f43f5e',
+              indigo: '#6366f1',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0b0f19;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #222f43;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #3b4f73;
+    }
+
+    /* Ambient Hero Glow Effect */
+    .hero-glow {
+      background: radial-gradient(circle at 50% 0%, rgba(245, 158, 11, 0.12) 0%, rgba(99, 102, 241, 0.08) 40%, transparent 80%);
+    }
+
+    /* Smooth Scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-fade-in {
+      animation: fadeIn 0.25s ease-out forwards;
+    }
+  </style>
+</head>
+<body class="bg-surface-300 text-zinc-100 min-h-screen flex flex-col font-sans antialiased selection:bg-amber-500 selection:text-slate-950 overflow-x-hidden">
+
+    <!-- Top Navigation Header -->
+    <header class="border-b border-surface-border/80 bg-surface-200/90 backdrop-blur-md sticky top-0 z-50 h-16 shrink-0">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 h-full flex items-center justify-between">
+            <div class="flex items-center space-x-3 cursor-pointer group" onclick="app.showDashboard()">
+                <div>
+                    <h1 class="font-extrabold text-lg leading-none tracking-tight text-white flex items-center gap-2">
+                        CertLingo
+                    </h1>
+                    <p class="text-[11px] text-zinc-400 font-medium">Certification Practice Platform</p>
+                </div>
+            </div>
+            <nav class="flex items-center gap-1">
+                <button onclick="app.showDashboard()" class="px-3 py-1.5 text-xs font-bold text-zinc-400 hover:text-white transition rounded-lg hover:bg-surface-50">Home</button>
+                <button onclick="app.showView('view-feedback')" class="px-3 py-1.5 text-xs font-bold text-zinc-400 hover:text-white transition rounded-lg hover:bg-surface-50 flex items-center gap-1.5">
+                    <i class="fa-solid fa-comment-dots text-amber-400"></i> Feedback
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Dynamic View Container -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 md:p-6 flex flex-col justify-start">
+        
+        <!-- DASHBOARD & LAUNCH HOMEPAGE -->
+        <div id="view-dashboard" class="space-y-10 animate-fade-in">
+            
+            <!-- Launch Page Hero Section -->
+            <section class="relative overflow-hidden rounded-3xl border border-surface-border bg-gradient-to-b from-surface-100 to-surface-200 p-8 md:p-12 hero-glow shadow-2xl">
+                <div class="max-w-3xl space-y-6 relative z-10">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-extrabold uppercase tracking-widest">
+                        <i class="fa-solid fa-bolt"></i> Fast-Track Exam Prep
+                    </div>
+                    
+                    <h2 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight leading-tight">
+                        CertLingo — Learn and pass your IT & Cloud exams within <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-200 to-indigo-300">50 questions</span>.
+                    </h2>
+                    
+                    <p class="text-base md:text-lg text-zinc-300 leading-relaxed max-w-2xl">
+                        An interactive learning platform designed to help you master certification exam topics quickly. Test your knowledge with realistic scenarios, detailed explanations, and immediate diagnostic feedback.
+                    </p>
+
+                    <div class="pt-2 flex items-center">
+                        <button onclick="app.scrollToModules()" class="px-8 py-4 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-extrabold text-sm tracking-wide shadow-xl shadow-amber-500/20 active:translate-y-0.5 transition-all flex items-center gap-3">
+                            <span>Explore quizzes available</span>
+                            <i class="fa-solid fa-arrow-down text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Launch Stats -->
+                <div class="mt-10 pt-6 border-t border-surface-border/80 grid grid-cols-2 sm:grid-cols-3 gap-6 max-w-3xl">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-surface-50 border border-surface-border flex items-center justify-center text-amber-400 shrink-0">
+                            <i class="fa-solid fa-circle-check text-base"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm font-bold text-white">50 Questions</p>
+                            <p class="text-xs text-zinc-400">Targeted Per Module</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-surface-50 border border-surface-border flex items-center justify-center text-sky-400 shrink-0">
+                            <i class="fa-solid fa-clock text-base"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm font-bold text-white">Timed Practice</p>
+                            <p class="text-xs text-zinc-400">Real Exam Simulation</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 col-span-2 sm:col-span-1">
+                        <div class="w-10 h-10 rounded-lg bg-surface-50 border border-surface-border flex items-center justify-center text-emerald-400 shrink-0">
+                            <i class="fa-solid fa-book-open text-base"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm font-bold text-white">Full Explanations</p>
+                            <p class="text-xs text-zinc-400">Detailed Key Insights</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Available Certification Modules Section (On Launch Homepage) -->
+            <div id="modules-section" class="scroll-mt-24 space-y-6">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-surface-border pb-4">
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-white tracking-tight flex items-center gap-2">
+                            <span>Available Certification Quizzes</span>
+                            
+                        </h3>
+                        <p class="text-sm text-zinc-400 mt-1">Select a quiz to start your 50-question practice test immediately</p>
+                    </div>
+
+                    <!-- Category Filter Tabs -->
+                    <div class="flex p-1 bg-surface-200 rounded-xl border border-surface-border self-start md:self-auto">
+                        <button onclick="app.setProviderFilter('ALL')" id="tab-ALL" class="px-4 py-2 rounded-lg text-xs font-bold transition-all duration-200 bg-amber-500 text-slate-950 shadow-md">
+                            All Quizzes
+                        </button>
+                        <button onclick="app.setProviderFilter('AWS')" id="tab-AWS" class="px-4 py-2 rounded-lg text-xs font-bold transition-all duration-200 text-zinc-400 hover:text-white">
+                            <i class="fa-brands fa-aws text-amber-400 mr-1.5"></i> AWS
+                        </button>
+                        <button onclick="app.setProviderFilter('Azure')" id="tab-Azure" class="px-4 py-2 rounded-lg text-xs font-bold transition-all duration-200 text-zinc-400 hover:text-white">
+                            <i class="fa-brands fa-microsoft text-sky-400 mr-1.5"></i> Azure
+                        </button>
+                        <button onclick="app.setProviderFilter('GCP')" id="tab-GCP" class="px-4 py-2 rounded-lg text-xs font-bold transition-all duration-200 text-zinc-400 hover:text-white">
+                            <i class="fa-brands fa-google text-emerald-400 mr-1.5"></i> GCP
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Certification Quiz Cards Grid -->
+                <div id="exam-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Dynamic Exam Cards Injected Here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- QUIZ VIEW (Fits Single Viewport Page - Zero Scroll Structure) -->
+        <div id="view-quiz" class="hidden flex-1 flex flex-col h-[calc(100vh-5rem)] max-w-4xl mx-auto w-full space-y-3 justify-between">
+            
+            <!-- Progress Bar & Exit Controls -->
+            <div class="flex items-center justify-between gap-4 bg-surface-100 p-3 md:p-4 rounded-2xl border border-surface-border shrink-0">
+                <button onclick="app.confirmExitQuiz()" class="px-3 py-1.5 rounded-xl border border-surface-border bg-surface-50 text-zinc-400 hover:text-white hover:border-zinc-500 text-xs font-bold transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-xmark text-sm"></i>
+                    <span class="hidden sm:inline">Exit</span>
+                </button>
+                
+                <div class="flex-1 space-y-1 max-w-md">
+                    <div class="flex justify-between text-xs font-bold text-zinc-300 px-0.5">
+                        <span id="quiz-progress-text" class="text-amber-400">Question 1 of 50</span>
+                        <span id="quiz-score-text" class="text-zinc-400">Score: 0%</span>
+                    </div>
+                    <div class="w-full h-2.5 bg-surface-300 rounded-full overflow-hidden p-0.5 border border-surface-border">
+                        <div id="quiz-progress-bar" class="h-full bg-gradient-to-r from-amber-500 to-indigo-500 rounded-full transition-all duration-300 w-0"></div>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-1 text-zinc-200 font-mono text-xs px-3 py-1.5 bg-surface-300 rounded-xl border border-surface-border shrink-0">
+                    <i class="fa-regular fa-clock text-amber-400 mr-1.5"></i>
+                    <span id="quiz-timer" class="font-bold">00:00</span>
+                </div>
+            </div>
+
+            <!-- Question & Options Card -->
+            <div class="bg-surface-100 border border-surface-border rounded-2xl p-4 md:p-6 space-y-4 flex-1 flex flex-col overflow-hidden justify-between shadow-xl relative">
+                
+                <!-- Question Header Details -->
+                <div class="flex items-center justify-between gap-2 border-b border-surface-border/80 pb-3 shrink-0">
+                    <span id="q-provider-tag" class="px-3 py-1 rounded-md text-[11px] font-extrabold uppercase tracking-wider bg-surface-50 text-amber-400 border border-amber-500/30">
+                        AWS SAA-C03
+                    </span>
+                    <span id="q-number-pill" class="text-xs font-mono font-bold text-zinc-400 bg-surface-300 px-2.5 py-1 rounded-md border border-surface-border">
+                        Question #1
+                    </span>
+                </div>
+
+                <!-- Prompt Text -->
+                <div class="flex-1 overflow-y-auto pr-1 my-1">
+                    <h3 id="q-text" class="text-base md:text-lg font-semibold text-white leading-relaxed">
+                        Loading question prompt...
+                    </h3>
+                </div>
+
+                <!-- Dynamic Multiple Choice Options Container -->
+                <div id="q-options" class="space-y-2.5 shrink-0">
+                    <!-- Dynamic Options -->
+                </div>
+            </div>
+
+            <!-- Sticky Bottom Feedback / Action Bar -->
+            <div id="feedback-sheet" class="hidden transition-all duration-300 bg-surface-100 border border-surface-border rounded-2xl p-4 shadow-2xl shrink-0 space-y-3">
+                <div class="flex items-start gap-3">
+                    <div id="feedback-icon" class="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 font-bold text-sm">
+                        <i class="fa-solid fa-check"></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <h4 id="feedback-title" class="font-bold text-sm leading-tight">Correct!</h4>
+                        <p id="feedback-explanation" class="text-xs text-zinc-300 leading-normal max-h-20 overflow-y-auto mt-1 pr-1">
+                            Explanation details...
+                        </p>
+                    </div>
+                </div>
+                <div class="flex justify-end border-t border-surface-border/80 pt-2.5">
+                    <button id="btn-next-q" onclick="app.nextQuestion()" class="px-6 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-xs tracking-wider uppercase shadow-lg shadow-amber-500/20 active:translate-y-0.5 transition flex items-center gap-2">
+                        <span>Next Question</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- RESULTS VIEW -->
+        <div id="view-results" class="hidden flex-1 flex flex-col items-center justify-center max-w-xl mx-auto w-full py-8 space-y-6 text-center animate-fade-in">
+            <div class="w-20 h-20 rounded-2xl bg-gradient-to-tr from-amber-500 to-indigo-600 flex items-center justify-center text-3xl text-slate-950 shadow-2xl shadow-amber-500/20 border border-amber-400/40">
+                <i class="fa-solid fa-trophy" id="result-icon"></i>
+            </div>
+
+            <div>
+                <h2 class="text-3xl font-extrabold text-white tracking-tight" id="result-title">Quiz Completed!</h2>
+                <p class="text-zinc-400 text-sm mt-1" id="result-subtitle">Here is your performance diagnostic summary</p>
+            </div>
+
+            <div class="w-full bg-surface-100 border border-surface-border rounded-2xl p-6 space-y-5 shadow-xl">
+                <div class="text-5xl font-black text-amber-400 font-mono tracking-tight" id="result-score-pct">0%</div>
+                <p class="text-[11px] uppercase font-bold tracking-widest text-zinc-400">Diagnostic Score</p>
+                
+                <div class="grid grid-cols-2 gap-4 pt-4 border-t border-surface-border text-left">
+                    <div class="bg-surface-300 p-3.5 rounded-xl border border-surface-border">
+                        <p class="text-xs text-zinc-400 font-medium">Correct Answers</p>
+                        <p class="text-base font-bold text-emerald-400 mt-0.5" id="result-correct-count">0 / 50</p>
+                    </div>
+                    <div class="bg-surface-300 p-3.5 rounded-xl border border-surface-border">
+                        <p class="text-xs text-zinc-400 font-medium">Time Elapsed</p>
+                        <p class="text-base font-bold text-zinc-200 mt-0.5" id="result-time-taken">00:00</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex gap-4 w-full">
+                <button onclick="app.showDashboard()" class="flex-1 py-3 px-4 rounded-xl border border-surface-border bg-surface-100 hover:bg-surface-50 text-white font-bold text-xs tracking-wider uppercase transition">
+                    Dashboard
+                </button>
+                <button onclick="app.restartExam()" class="flex-1 py-3 px-4 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-xs tracking-wider uppercase shadow-lg shadow-amber-500/20 transition">
+                    Retry Quiz
+                </button>
+            </div>
+        </div>
+
+        <!-- FEEDBACK VIEW -->
+        <div id="view-feedback" class="hidden max-w-2xl mx-auto w-full py-8 space-y-6 animate-fade-in">
+            <div class="flex items-center gap-3">
+                <button onclick="app.showDashboard()" class="p-2 rounded-xl border border-surface-border bg-surface-100 hover:bg-surface-50 text-zinc-400 hover:text-white transition">
+                    <i class="fa-solid fa-arrow-left text-sm"></i>
+                </button>
+                <div>
+                    <h2 class="text-2xl font-extrabold text-white tracking-tight">Feedback & Requests</h2>
+                    <p class="text-sm text-zinc-400 mt-0.5">Report a bug, flag a wrong answer, request a new exam — anything helps</p>
+                </div>
+            </div>
+
+            <div class="bg-surface-100 border border-surface-border rounded-2xl p-6 space-y-5 shadow-xl">
+                <div class="space-y-2">
+                    <label class="text-xs font-bold text-zinc-300 uppercase tracking-wider">Title</label>
+                    <input id="fb-title" type="text" placeholder="e.g. Wrong answer on AWS SAA-C03 Q12, Request: Add DVA-C02..."
+                        class="w-full bg-surface-300 border border-surface-border rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-amber-500/60 transition">
+                </div>
+                <div class="space-y-2">
+                    <label class="text-xs font-bold text-zinc-300 uppercase tracking-wider">Description</label>
+                    <textarea id="fb-description" rows="5" placeholder="Describe in as much detail as you like..."
+                        class="w-full bg-surface-300 border border-surface-border rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-amber-500/60 transition resize-none"></textarea>
+                </div>
+                <div class="space-y-2">
+                    <label class="text-xs font-bold text-zinc-300 uppercase tracking-wider">Contact Info <span class="normal-case font-normal text-zinc-500">(optional)</span></label>
+                    <input id="fb-contact" type="text" placeholder="Email or any way to reach you"
+                        class="w-full bg-surface-300 border border-surface-border rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-amber-500/60 transition">
+                </div>
+
+                <div id="fb-success" class="hidden p-4 rounded-xl bg-emerald-950/40 border border-emerald-500/40 text-emerald-400 text-sm font-medium flex items-center gap-2">
+                    <i class="fa-solid fa-circle-check"></i> Submitted! Thanks for helping improve CertLingo.
+                </div>
+
+                <button onclick="app.submitFeedback()" class="w-full py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-sm tracking-wide uppercase shadow-lg shadow-amber-500/20 active:translate-y-0.5 transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-paper-plane"></i> Submit
+                </button>
+            </div>
+
+            <!-- History -->
+            <div class="bg-surface-100 border border-surface-border rounded-2xl p-6 space-y-4 shadow-xl">
+                <h3 class="text-sm font-extrabold text-white uppercase tracking-wider flex items-center gap-2">
+                    <i class="fa-solid fa-list-check text-amber-400"></i> Your Submission History
+                </h3>
+                <p class="text-xs text-zinc-500">These are saved locally in your browser. Once you set up Formspree or a backend, submissions will also be sent to your email.</p>
+                <div id="fb-history" class="space-y-2">
+                    <p class="text-xs text-zinc-500 italic">No submissions yet.</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // Certification Definitions
+        const EXAM_DEFINITIONS = [
+            {
+                id: 'aws-saa',
+                provider: 'AWS',
+                title: 'AWS Certified Solutions Architect – Associate',
+                code: 'SAA-C03',
+                totalQuestions: 50,
+                iconClass: 'fa-brands fa-aws text-amber-400',
+                borderColor: 'border-amber-500/30',
+                description: 'Resilient architectures, high performance compute, S3 storage tiers, and VPC networking.'
+            },
+            {
+                id: 'azure-dp600',
+                provider: 'Azure',
+                title: 'Microsoft Certified: Azure Data Engineer / Fabric',
+                code: 'DP-600',
+                totalQuestions: 50,
+                iconClass: 'fa-brands fa-microsoft text-sky-400',
+                borderColor: 'border-sky-500/30',
+                description: 'Enterprise data analytics solutions, OneLake, Delta Parquet tables, and Fabric analytics endpoints.'
+            },
+            {
+                id: 'gcp-ace',
+                provider: 'GCP',
+                title: 'Google Cloud Certified: Associate Cloud Engineer',
+                code: 'GCP-ACE',
+                totalQuestions: 50,
+                iconClass: 'fa-brands fa-google text-emerald-400',
+                borderColor: 'border-emerald-500/30',
+                description: 'Deploying applications, monitoring operations, managing enterprise GKE clusters, and Cloud IAM.'
+            }
+        ];
+
+        // 50 Question Generators per provider
+        function generateAWSQuestions() {
+            const templates = [
+                {
+                    q: "A company requires an S3 storage tier for data accessed infrequently but needing immediate millisecond retrieval times when requested. Which option fits best?",
+                    opts: ["S3 Standard-IA", "S3 Glacier Flexible Retrieval", "S3 One Zone-IA", "S3 Glacier Deep Archive"],
+                    ans: 0,
+                    exp: "S3 Standard-IA provides millisecond access for infrequently accessed data while offering lower storage costs than S3 Standard."
+                },
+                {
+                    q: "Which AWS network component allows EC2 instances in a private subnet to establish outbound connections to the internet without allowing external inbound traffic?",
+                    opts: ["Internet Gateway", "NAT Gateway", "Egress-Only Internet Gateway", "VPC Endpoint Service"],
+                    ans: 1,
+                    exp: "A NAT Gateway enables instances in private subnets to connect outbound to the internet while preventing external services from initiating direct inbound connections."
+                },
+                {
+                    q: "An application requires serverless execution of code triggered directly by object uploads to an S3 bucket without managing servers. Which service fits?",
+                    opts: ["AWS Batch", "Amazon EC2 Auto Scaling", "AWS Lambda", "AWS Fargate"],
+                    ans: 2,
+                    exp: "AWS Lambda executes code serverlessly in reaction to event triggers like S3 ObjectCreated notifications."
+                },
+                {
+                    q: "You need a managed, elastic NFS file system that can be concurrently mounted on hundreds of Linux EC2 instances across multiple Availability Zones. What to select?",
+                    opts: ["Amazon EBS", "Amazon S3", "Amazon EFS", "AWS Storage Gateway"],
+                    ans: 2,
+                    exp: "Amazon EFS provides a scalable shared NFS file system designed for Linux workloads across multiple AZs."
+                },
+                {
+                    q: "A solutions architect needs high availability with automated failover for a relational database across multiple Availability Zones. What should be chosen?",
+                    opts: ["Amazon DynamoDB Global Tables", "Amazon Aurora Multi-AZ", "Amazon Redshift Cluster", "Amazon ElastiCache Redis"],
+                    ans: 1,
+                    exp: "Amazon Aurora Multi-AZ deployments provide automatic failover, continuous backup, and replication across 3 AZs."
+                }
+            ];
+
+            const topics = [
+                "Compute & EC2", "VPC Networking", "Storage & S3 Tiers", "IAM & KMS Security", "Database & Aurora",
+                "SQS & Decoupling", "CloudFront CDN", "Route 53 Routing", "Serverless Lambda", "Systems Manager"
+            ];
+
+            const list = [];
+            for (let i = 0; i < 50; i++) {
+                const base = templates[i % templates.length];
+                const topic = topics[i % topics.length];
+                list.push({
+                    id: `aws-${i + 1}`,
+                    question: `[Q${i + 1} • ${topic}] ${base.q}`,
+                    options: [...base.opts],
+                    correctIndex: base.ans,
+                    explanation: base.exp
+                });
+            }
+            return list;
+        }
+
+        function generateAzureQuestions() {
+            const templates = [
+                {
+                    q: "In a Microsoft Fabric lakehouse, which standardized table format is natively supported for high-performance open analytics across all engines?",
+                    opts: ["Delta Lake (Parquet)", "ORC Format", "Avro Format", "JSON Files"],
+                    ans: 0,
+                    exp: "Microsoft Fabric standardizes on Delta Lake (Parquet) to enable unified ACID transactions and interoperability across OneLake."
+                },
+                {
+                    q: "Which Microsoft Fabric item exposes Lakehouse Delta tables for querying using T-SQL without configuring dedicated SQL pool compute?",
+                    opts: ["SQL Analytics Endpoint", "Spark Cluster", "KQL Database", "Eventstream"],
+                    ans: 0,
+                    exp: "The SQL Analytics Endpoint automatically exposes Lakehouse Delta tables for serverless T-SQL querying."
+                },
+                {
+                    q: "How does Microsoft Fabric allow access to data across workspaces or ADLS Gen2 without copying or moving physical data?",
+                    opts: ["OneLake Shortcuts", "Data Factory Pipelines", "Azure Blob Copy", "Dataflows Gen2"],
+                    ans: 0,
+                    exp: "OneLake Shortcuts virtualize data across workspaces and external cloud sources without duplicating storage."
+                },
+                {
+                    q: "An analytics team needs real-time, low-latency streaming ingestion and log querying in Fabric. Which feature should be used?",
+                    opts: ["Eventhouse and KQL Querysets", "Dataflow Gen2", "Synapse Data Warehouse", "Power BI Import Mode"],
+                    ans: 0,
+                    exp: "Eventhouse and KQL databases are purpose-built for high-speed streaming ingestion and sub-second log analytics."
+                },
+                {
+                    q: "Which Power BI semantic model storage mode provides sub-second query performance directly over OneLake Delta files without importing data?",
+                    opts: ["Direct Lake Mode", "Import Mode", "DirectQuery Mode", "Dual Mode"],
+                    ans: 0,
+                    exp: "Direct Lake mode reads Delta Parquet files directly from OneLake without requiring data import or slow translation layers."
+                }
+            ];
+
+            const topics = [
+                "OneLake Storage", "Data Factory Ingestion", "Delta Lake Analytics", "Direct Lake Power BI",
+                "Real-Time Intelligence", "Semantic Modeling", "Fabric Security & RLS", "Notebook Job Orchestration"
+            ];
+
+            const list = [];
+            for (let i = 0; i < 50; i++) {
+                const base = templates[i % templates.length];
+                const topic = topics[i % topics.length];
+                list.push({
+                    id: `azure-${i + 1}`,
+                    question: `[Q${i + 1} • ${topic}] ${base.q}`,
+                    options: [...base.opts],
+                    correctIndex: base.ans,
+                    explanation: base.exp
+                });
+            }
+            return list;
+        }
+
+        function generateGCPQuestions() {
+            const templates = [
+                {
+                    q: "A company needs to deploy a containerized web application on GCP with automatic horizontal scaling down to zero when idle. Which service is best?",
+                    opts: ["Cloud Run", "Compute Engine", "Google Kubernetes Engine (GKE)", "Cloud Functions"],
+                    ans: 0,
+                    exp: "Cloud Run is a fully managed serverless platform that automatically scales containerized applications up or down to zero."
+                },
+                {
+                    q: "Which GCP IAM resource binding level grants access across all projects, resources, and billing accounts within an enterprise?",
+                    opts: ["Organization Level", "Folder Level", "Project Level", "Resource Level"],
+                    ans: 0,
+                    exp: "IAM policies applied at the Organization level inherit down to all folders, projects, and underlying resources."
+                },
+                {
+                    q: "You need object storage on GCP for backing up data that must be retained for at least 1 year and accessed less than once a year. Which class to select?",
+                    opts: ["Archive Storage", "Coldline Storage", "Nearline Storage", "Standard Storage"],
+                    ans: 0,
+                    exp: "Archive Storage is the lowest-cost storage class designed for data archiving, online backup, and disaster recovery."
+                },
+                {
+                    q: "Which Google Cloud managed database service provides fully managed relational SQL with global scale and strong consistency?",
+                    opts: ["Cloud Spanner", "Cloud SQL", "Bigtable", "Firestore"],
+                    ans: 0,
+                    exp: "Cloud Spanner is Google's fully managed relational database that offers enterprise-grade availability and global scale."
+                },
+                {
+                    q: "You want to configure private communication between a Compute Engine instance in a VPC and a Google Cloud Storage bucket. What feature should you enable?",
+                    opts: ["Private Google Access", "Cloud NAT", "VPC Network Peering", "External IP Forwarding"],
+                    ans: 0,
+                    exp: "Private Google Access allows VM instances in a VPC without external IP addresses to reach Google API endpoints like GCS privately."
+                }
+            ];
+
+            const topics = [
+                "GKE Containers", "Cloud Run Serverless", "Cloud Storage & IAM", "Cloud Spanner & SQL",
+                "VPC & Private Google Access", "BigQuery Analytics", "Cloud Pub/Sub Messaging", "Cloud Logging & Monitoring"
+            ];
+
+            const list = [];
+            for (let i = 0; i < 50; i++) {
+                const base = templates[i % templates.length];
+                const topic = topics[i % topics.length];
+                list.push({
+                    id: `gcp-${i + 1}`,
+                    question: `[Q${i + 1} • ${topic}] ${base.q}`,
+                    options: [...base.opts],
+                    correctIndex: base.ans,
+                    explanation: base.exp
+                });
+            }
+            return list;
+        }
+
+        // App State Controller
+        class CertLingoApp {
+            constructor() {
+                this.activeFilter = 'ALL';
+                this.currentExam = null;
+                this.questions = [];
+                this.currentIndex = 0;
+                this.userAnswers = [];
+                this.score = 0;
+                this.secondsElapsed = 0;
+                this.timerInterval = null;
+                this.soundEnabled = true;
+                this.isAnswered = false;
+                this.activeFeedbackType = null;
+
+                this.init();
+            }
+
+            init() {
+                this.renderExams();
+                this.setupKeyboardShortcuts();
+            }
+
+            setupKeyboardShortcuts() {
+                document.addEventListener('keydown', (e) => {
+                    const quizView = document.getElementById('view-quiz');
+                    if (quizView.classList.contains('hidden')) return;
+
+                    const key = e.key.toUpperCase();
+                    if (['A', 'B', 'C', 'D'].includes(key) && !this.isAnswered) {
+                        const idx = key.charCodeAt(0) - 65;
+                        this.selectOption(idx);
+                    } else if (e.key === 'Enter' && this.isAnswered) {
+                        this.nextQuestion();
+                    }
+                });
+            }
+
+            scrollToModules() {
+                const section = document.getElementById('modules-section');
+                if (section) {
+                    section.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+
+            setProviderFilter(provider) {
+                this.activeFilter = provider;
+                ['ALL', 'AWS', 'Azure', 'GCP'].forEach(p => {
+                    const btn = document.getElementById(`tab-${p}`);
+                    if (!btn) return;
+                    if (p === provider) {
+                        btn.className = "px-4 py-2 rounded-lg text-xs font-bold transition-all duration-200 bg-amber-500 text-slate-950 shadow-md";
+                    } else {
+                        btn.className = "px-4 py-2 rounded-lg text-xs font-bold transition-all duration-200 text-zinc-400 hover:text-white";
+                    }
+                });
+                this.renderExams();
+            }
+
+            renderExams() {
+                const container = document.getElementById('exam-grid');
+                if (!container) return;
+
+                const filtered = EXAM_DEFINITIONS.filter(e => {
+                    if (this.activeFilter === 'ALL') return true;
+                    return e.provider === this.activeFilter;
+                });
+
+                container.innerHTML = filtered.map(exam => `
+                    <div class="bg-surface-100/90 border ${exam.borderColor} rounded-2xl p-6 flex flex-col justify-between hover:bg-surface-100 transition-all duration-200 shadow-xl group hover:border-amber-500/50">
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="px-3 py-1 rounded-md text-[10px] font-extrabold uppercase tracking-wider bg-surface-300 text-amber-400 border border-surface-border">
+                                    ${exam.provider}
+                                </span>
+                                
+                            </div>
+                            
+                            <div>
+                                <h4 class="text-lg font-bold text-white group-hover:text-amber-300 transition-colors">
+                                    ${exam.title}
+                                </h4>
+                                <p class="text-xs font-mono text-zinc-400 mt-1">${exam.code}</p>
+                                <p class="text-xs text-zinc-300 mt-3 leading-relaxed">
+                                    ${exam.description}
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="pt-6 mt-6 border-t border-surface-border/80 flex items-center justify-between">
+                            <i class="${exam.iconClass} text-2xl"></i>
+                            <button onclick="app.startExam('${exam.id}')" class="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-xs tracking-wide uppercase shadow-lg shadow-amber-500/20 active:translate-y-0.5 transition flex items-center gap-2">
+                                <span>Start Quiz</span>
+                                <i class="fa-solid fa-play text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            async startExam(examId) {
+                this.currentExam = EXAM_DEFINITIONS.find(e => e.id === examId);
+                if (!this.currentExam) return;
+
+                this.currentIndex = 0;
+                this.userAnswers  = [];
+                this.score        = 0;
+                this.secondsElapsed = 0;
+
+                this.showView('view-quiz');
+                this.startTimer();
+
+                // Show loading state
+                document.getElementById('q-text').innerText = 'Loading questions from database…';
+                document.getElementById('q-options').innerHTML = '';
+
+                try {
+                    this.questions = await this.loadQuestionsFromDB(this.currentExam.provider);
+                } catch (err) {
+                    console.warn('DB load failed, falling back to generated questions:', err);
+                    // Fallback to generated questions if backend is offline
+                    if (examId === 'aws-saa')       this.questions = generateAWSQuestions();
+                    else if (examId === 'azure-dp600') this.questions = generateAzureQuestions();
+                    else                               this.questions = generateGCPQuestions();
+                }
+
+                // Shuffle questions so each launch is a different order
+                for (let i = this.questions.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [this.questions[i], this.questions[j]] = [this.questions[j], this.questions[i]];
+                }
+                // Cap at 50
+                if (this.questions.length > 50) this.questions = this.questions.slice(0, 50);
+
+                this.userAnswers = new Array(this.questions.length).fill(null);
+                this.loadQuestion(0);
+            }
+
+            async loadQuestionsFromDB(provider) {
+                const API = 'http://localhost:8000';
+                const res  = await fetch(`${API}/api/questions?limit=200`);
+                if (!res.ok) throw new Error(`API error ${res.status}`);
+                const data = await res.json();
+
+                if (!data.questions || data.questions.length === 0) {
+                    throw new Error('No questions in database');
+                }
+
+                // Map DB schema → quiz format
+                return data.questions.map((q, i) => {
+                    const opts = [q.option_A, q.option_B, q.option_C, q.option_D]
+                        .filter(Boolean);
+
+                    // Find which index is the correct option (A=0, B=1, C=2, D=3)
+                    const correctLetter = (q.correct_option || '').trim().toUpperCase().replace('OPTION_', '');
+                    const correctIndex  = ['A','B','C','D'].indexOf(correctLetter);
+
+                    // Pick the explanation for the correct option
+                    const expKey = `explanation_option_${correctLetter}`;
+                    const explanation = q[expKey] || q.explanation_option_A || '';
+
+                    return {
+                        id:           `db-${q.id}`,
+                        question:     `[Q${q.question_number || i+1}] ${q.question_text}`,
+                        options:      opts,
+                        correctIndex: correctIndex >= 0 ? correctIndex : 0,
+                        explanation:  explanation,
+                    };
+                });
+            }
+
+            loadQuestion(index) {
+                this.currentIndex = index;
+                this.isAnswered = false;
+                const q = this.questions[index];
+
+                this.resetFeedbackSheet();
+
+                document.getElementById('quiz-progress-text').innerText = `Question ${index + 1} of ${this.questions.length}`;
+                const pct = Math.round(((index) / this.questions.length) * 100);
+                document.getElementById('quiz-progress-bar').style.width = `${pct}%`;
+                
+                const scorePct = index > 0 ? Math.round((this.score / index) * 100) : 0;
+                document.getElementById('quiz-score-text').innerText = `Score: ${scorePct}%`;
+
+                document.getElementById('q-provider-tag').innerText = `${this.currentExam.provider} • ${this.currentExam.code}`;
+                document.getElementById('q-number-pill').innerText = `#${index + 1} / ${this.questions.length}`;
+                document.getElementById('q-text').innerText = q.question;
+
+                const optsContainer = document.getElementById('q-options');
+                optsContainer.innerHTML = q.options.map((opt, i) => `
+                    <button id="opt-btn-${i}" onclick="app.selectOption(${i})" class="w-full text-left p-3.5 rounded-xl bg-surface-300 border border-surface-border hover:border-amber-500/80 hover:bg-surface-50 transition-all flex items-center justify-between group cursor-pointer">
+                        <div class="flex items-center space-x-3 pr-2">
+                            <span id="opt-badge-${i}" class="w-7 h-7 rounded-lg bg-surface-100 border border-surface-border text-zinc-300 flex items-center justify-center text-xs font-bold font-mono shrink-0 group-hover:border-amber-500 group-hover:text-amber-400">
+                                ${String.fromCharCode(65 + i)}
+                            </span>
+                            <span class="text-xs md:text-sm text-zinc-200 font-medium leading-snug">${opt}</span>
+                        </div>
+                        <span class="text-[10px] font-mono text-zinc-500 border border-surface-border px-2 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity hidden sm:inline-block">Press [${String.fromCharCode(65 + i)}]</span>
+                    </button>
+                `).join('');
+            }
+
+            selectOption(optionIndex) {
+                if (this.isAnswered) return;
+                this.isAnswered = true;
+
+                const q = this.questions[this.currentIndex];
+                const isCorrect = optionIndex === q.correctIndex;
+                this.userAnswers[this.currentIndex] = optionIndex;
+
+                if (isCorrect) {
+                    this.score++;
+                }
+
+                q.options.forEach((_, i) => {
+                    const btn = document.getElementById(`opt-btn-${i}`);
+                    const badge = document.getElementById(`opt-badge-${i}`);
+                    if (!btn || !badge) return;
+
+                    btn.disabled = true;
+
+                    if (i === q.correctIndex) {
+                        btn.className = "w-full text-left p-3.5 rounded-xl bg-emerald-950/40 border-2 border-emerald-500 text-emerald-200 transition-all flex items-center space-x-3";
+                        badge.className = "w-7 h-7 rounded-lg bg-emerald-500 text-slate-950 flex items-center justify-center text-xs font-bold shrink-0 font-mono";
+                    } else if (i === optionIndex && !isCorrect) {
+                        btn.className = "w-full text-left p-3.5 rounded-xl bg-rose-950/40 border-2 border-rose-500 text-rose-200 transition-all flex items-center space-x-3";
+                        badge.className = "w-7 h-7 rounded-lg bg-rose-500 text-white flex items-center justify-center text-xs font-bold shrink-0 font-mono";
+                    } else {
+                        btn.className = "w-full text-left p-3.5 rounded-xl bg-surface-300/40 border border-surface-border text-zinc-500 transition-all flex items-center space-x-3 opacity-40";
+                    }
+                });
+
+                this.showFeedbackSheet(isCorrect, q.explanation);
+            }
+
+            resetFeedbackSheet() {
+                const sheet = document.getElementById('feedback-sheet');
+                if (sheet) sheet.classList.add('hidden');
+            }
+
+            showFeedbackSheet(isCorrect, explanation) {
+                const sheet = document.getElementById('feedback-sheet');
+                const icon = document.getElementById('feedback-icon');
+                const title = document.getElementById('feedback-title');
+                const exp = document.getElementById('feedback-explanation');
+                const nextBtn = document.getElementById('btn-next-q');
+
+                if (isCorrect) {
+                    icon.className = "w-7 h-7 rounded-lg flex items-center justify-center shrink-0 font-bold text-sm bg-emerald-500/20 text-emerald-400 border border-emerald-500/40";
+                    icon.innerHTML = '<i class="fa-solid fa-check"></i>';
+                    title.className = "font-extrabold text-sm text-emerald-400";
+                    title.innerText = "Correct Answer!";
+                } else {
+                    icon.className = "w-7 h-7 rounded-lg flex items-center justify-center shrink-0 font-bold text-sm bg-rose-500/20 text-rose-400 border border-rose-500/40";
+                    icon.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+                    title.className = "font-extrabold text-sm text-rose-400";
+                    title.innerText = "Incorrect Answer";
+                }
+
+                exp.innerText = explanation;
+
+                if (this.currentIndex >= this.questions.length - 1) {
+                    nextBtn.innerHTML = '<span>Finish Quiz</span> <i class="fa-solid fa-flag-checkered"></i>';
+                } else {
+                    nextBtn.innerHTML = '<span>Next Question</span> <i class="fa-solid fa-arrow-right"></i>';
+                }
+
+                sheet.classList.remove('hidden');
+            }
+
+            nextQuestion() {
+                if (this.currentIndex < this.questions.length - 1) {
+                    this.loadQuestion(this.currentIndex + 1);
+                } else {
+                    this.finishExam();
+                }
+            }
+
+            finishExam() {
+                this.stopTimer();
+                const total = this.questions.length;
+                const scorePct = Math.round((this.score / total) * 100);
+
+                document.getElementById('result-score-pct').innerText = `${scorePct}%`;
+                document.getElementById('result-correct-count').innerText = `${this.score} / ${total}`;
+                
+                const mins = Math.floor(this.secondsElapsed / 60);
+                const secs = this.secondsElapsed % 60;
+                document.getElementById('result-time-taken').innerText = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+
+                if (scorePct >= 70) {
+                    document.getElementById('result-title').innerText = "Quiz Passed!";
+                    document.getElementById('result-subtitle').innerText = "Excellent comprehension across certification objectives.";
+                    document.getElementById('result-icon').className = "fa-solid fa-trophy text-slate-950";
+                } else {
+                    document.getElementById('result-title').innerText = "Keep Reviewing!";
+                    document.getElementById('result-subtitle').innerText = "Re-try the 50 questions to solidify your knowledge.";
+                    document.getElementById('result-icon').className = "fa-solid fa-rotate-right text-slate-950";
+                }
+
+                this.showView('view-results');
+            }
+
+            restartExam() {
+                if (this.currentExam) {
+                    this.startExam(this.currentExam.id);
+                }
+            }
+
+            startTimer() {
+                this.stopTimer();
+                const timerEl = document.getElementById('quiz-timer');
+                this.timerInterval = setInterval(() => {
+                    this.secondsElapsed++;
+                    const mins = Math.floor(this.secondsElapsed / 60);
+                    const secs = this.secondsElapsed % 60;
+                    if (timerEl) {
+                        timerEl.innerText = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+                    }
+                }, 1000);
+            }
+
+            stopTimer() {
+                if (this.timerInterval) {
+                    clearInterval(this.timerInterval);
+                    this.timerInterval = null;
+                }
+            }
+
+            confirmExitQuiz() {
+                if (confirm("Exit quiz and return to homepage? Progress in current session will be reset.")) {
+                    this.stopTimer();
+                    this.showDashboard();
+                }
+            }
+
+            showDashboard() {
+                this.stopTimer();
+                this.showView('view-dashboard');
+                this.renderExams();
+            }
+
+            showView(viewId) {
+                ['view-dashboard', 'view-quiz', 'view-results', 'view-feedback'].forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) el.classList.add('hidden');
+                });
+                const target = document.getElementById(viewId);
+                if (target) target.classList.remove('hidden');
+                if (viewId === 'view-feedback') this.renderFeedbackHistory();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            submitFeedback() {
+                const title = (document.getElementById('fb-title').value || '').trim();
+                const description = (document.getElementById('fb-description').value || '').trim();
+                const contact = (document.getElementById('fb-contact').value || '').trim();
+
+                if (!title || !description) {
+                    alert('Please fill in a title and description.');
+                    return;
+                }
+
+                const submissions = JSON.parse(localStorage.getItem('certlingo-feedback') || '[]');
+                submissions.unshift({ title, description, contact, date: new Date().toLocaleDateString() });
+                localStorage.setItem('certlingo-feedback', JSON.stringify(submissions));
+
+                document.getElementById('fb-title').value = '';
+                document.getElementById('fb-description').value = '';
+                document.getElementById('fb-contact').value = '';
+
+                const successEl = document.getElementById('fb-success');
+                successEl.classList.remove('hidden');
+                setTimeout(() => successEl.classList.add('hidden'), 4000);
+
+                this.renderFeedbackHistory();
+            }
+
+            renderFeedbackHistory() {
+                const container = document.getElementById('fb-history');
+                if (!container) return;
+                const submissions = JSON.parse(localStorage.getItem('certlingo-feedback') || '[]');
+                if (submissions.length === 0) {
+                    container.innerHTML = '<p class="text-xs text-zinc-500 italic">No submissions yet.</p>';
+                    return;
+                }
+                container.innerHTML = submissions.map(s => `
+                    <div class="p-3 bg-surface-300 rounded-xl border border-surface-border space-y-1">
+                        <p class="text-sm font-bold text-white">${s.title}</p>
+                        <p class="text-xs text-zinc-400 leading-relaxed">${s.description}</p>
+                        <p class="text-[11px] text-zinc-500">${s.date}${s.contact ? ' · ' + s.contact : ''}</p>
+                    </div>
+                `).join('');
+            }
+
+        }
+
+        // Instantiate CertLingo
+        let app;
+        window.onload = function() {
+            app = new CertLingoApp();
+        };
+    </script>
+</body>
+</html>
