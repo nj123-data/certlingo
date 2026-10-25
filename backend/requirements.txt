@@ -3,6 +3,7 @@ uvicorn[standard]
 python-dotenv
 python-multipart
 pyodbc
+psycopg2-binary
 pandas
 opencv-python
 pytesseract

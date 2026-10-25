@@ -34,3 +34,8 @@ GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
 # We set it here so the pipeline script works without modification.
 if GEMINI_API_KEY and not os.getenv("GOOGLE_API_KEY"):
     os.environ["GOOGLE_API_KEY"] = GEMINI_API_KEY
+
+# ── Database ───────────────────────────────────────────────
+DATABASE_URL = os.getenv("DATABASE_URL", "")  # Supabase Postgres URL
+# If DATABASE_URL is set, use Postgres. Otherwise fall back to SQL Server.
+USE_POSTGRES = bool(DATABASE_URL)
