@@ -92,7 +92,8 @@ export default function DashboardPage() {
 
             {/* Open question bank */}
             <a
-              href="http://localhost:3001"
+              // page.tsx
+              href="https://certlingo-question-bank.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
               className="px-3 py-1.5 rounded-lg bg-amber-500 text-slate-900 text-xs font-bold hover:bg-amber-400 transition-colors"
