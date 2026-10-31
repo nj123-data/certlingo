@@ -18,7 +18,7 @@ export interface ScreenshotResult {
 
 const MAX_WIDTH = 1280;
 const JPEG_QUALITY = 0.85;
-const API = "http://localhost:8000";
+const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
 function formatTime(seconds: number) {
   const s = Math.floor(seconds);

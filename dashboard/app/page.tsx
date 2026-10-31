@@ -32,7 +32,7 @@ export default function DashboardPage() {
     async function checkHealth() {
       try {
         // page.tsx — replace the hardcoded URL
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000"}/api/health`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/health`);
         setBackendOnline(res.ok);
       } catch {
         setBackendOnline(false);

@@ -36,8 +36,7 @@ interface DbStatus {
   error?:         string;
 }
 
-const API = "http://localhost:8000";
-
+const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 function isComplete(q: Question): boolean {
   return !!(q.question_text?.trim() && q.option_A?.trim() && q.correct_option?.trim());
 }
