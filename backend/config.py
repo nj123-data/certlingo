@@ -24,7 +24,7 @@ SQL_ENCRYPT              = "yes"
 SQL_TRUST_SERVER_CERTIFICATE = "yes"
 
 # ── Tesseract ──────────────────────────────────────────────
-TESSERACT_CMD = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+TESSERACT_CMD = "/usr/bin/tesseract"
 OCR_LANGUAGE  = "eng"
 
 # ── Gemini ─────────────────────────────────────────────────

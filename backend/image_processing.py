@@ -70,7 +70,7 @@ OUTPUT_COLUMNS = [
 
 def configure_tesseract():
     if TESSERACT_CMD:
-        pytesseract.pytesseract.tesseract_cmd = str(TESSERACT_CMD)
+        pytesseract.pytesseract.tesseract_cmd = TESSERACT_CMD
 
 
 def prepare_image(image_path):
